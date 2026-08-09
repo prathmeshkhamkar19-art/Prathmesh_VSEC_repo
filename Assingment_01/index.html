@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student_details</title>
+</head>
+<body>
+    <h1> Check your Progress....</h1>
+    <form>
+        <label for="name">Name :</label><br>
+        <input type="text" id="name"  name ="name"required><br><br>
+
+        <label for="roll_no"> Roll No :</label><br>
+        <input type="number" id="roll_no" name ="roll_no" required><br><br>
+
+        <label for="english">English subject Marks :</label><br>
+        <input type="number" id="english" name="english" required><br><br>
+
+        <label for="math" >Math Subject Mark :</label><br>
+        <input type="number" id="math" name="math" required><br><br>
+        
+        <label for="science">Science Subject Mark :</label><br>
+        <input type="number" id="science" name="science" required><br><br>
+        
+        <button type = "button"onclick=" Calculate()"> Result </button> <br>
+
+        
+    </form>
+   
+
+        <h2>_______________________________________________________________________________________________________________________________</h2><br>
+
+<table border="1" id="t1">
+    <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Science mark</th>
+        <th>Math mark</th>
+        <th>English Mark</th>
+        <th>Total Mark</th>
+        <th>Percentage</th>
+    </tr>
+
+    <tr>
+        <td id="name"></td>
+        <td id="roll_no"></td>
+        <td id="science"></td>
+        <td id="math"></td>
+        <td id="english"></td>
+        <td id="per"></td>
+        <td id="total"></td>
+    </tr>
+</table>
+
+ <script src="script.js"></script>
+</body>
+</html>
