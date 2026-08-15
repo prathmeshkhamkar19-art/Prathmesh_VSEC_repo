@@ -1,32 +1,30 @@
 function calculate()
 {
-    let weight = parseInt(document.getElementById("weight").value);
-    let height = parseInt(document.getElementById("height").value);
+    let weight = parseFloat(document.getElementById("weight").value);
+    let height = parseFloat(document.getElementById("height").value);
 
-    let bim = weight / (height *height);
+    let bmi = weight / (height * height);
 
-    let catagory;
+    let category;
 
-    if (bmi <18.5)
+    if (bmi < 18.5)
     {
-        catagory = "underweight";
+        category = "Underweight";
     }
-
-    else if(bmi < 25)
+    else if (bmi < 25)
     {
-        catagory = "normal weight ";
-
+        category = "Normal weight";
     }
-    else if(bmi <30)
+    else if (bmi < 30)
     {
-        catagory = "Overweight";
-
+        category = "Overweight";
     }
     else
     {
-        catagory = "Obese";
+        category = "Obese";
     }
-    document.getElementById("result").innerHTML=
-    'Your BMI is :' + bmi.toixed(2)+
-    'Category is : '+ catagory;
+
+    document.getElementById("result").innerHTML =
+        "Your BMI is: " + bmi.toFixed(2) +
+        "<br>Category is: " + category;
 }
