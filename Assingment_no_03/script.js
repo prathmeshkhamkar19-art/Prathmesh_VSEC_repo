@@ -5,7 +5,7 @@
     
 
     let name = (document.getElementById("name").value);
-     let roll_no = parseInt(document.getElementById("roll_no").value);
+    let roll_no = parseInt(document.getElementById("roll_no").value);
     let smark = parseInt(document.getElementById("science").value);
     let mmark = parseInt(document.getElementById("math").value);
     let emark = parseInt(document.getElementById("english").value);
