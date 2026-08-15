@@ -1,9 +1,9 @@
 function calculate()
-{
-    let weight = parseFloat(document.getElementById("weight").value);
-    let height = parseFloat(document.getElementById("height").value);
+{      //js variable                               html variable
+    let weight = parseFloat(document.getElementById("weight").value);       // use parsefloat to get data in float 
+    let height = parseFloat(document.getElementById("height").value);       // geteleme...() function used to get the data from *html fil(documnet )  in js variable that is first 
 
-    let bmi = weight / (height * height);
+    let bmi = weight / (height * height);   // formula to find bmi
 
     let category;
 
@@ -24,7 +24,7 @@ function calculate()
         category = "Obese";
     }
 
-    document.getElementById("result").innerHTML =
+    document.getElementById("result").innerHTML =   // using innerhtml we can make direct change in html file on that partiular id 
         "Your BMI is: " + bmi.toFixed(2) +
         "<br>Category is: " + category;
 }
