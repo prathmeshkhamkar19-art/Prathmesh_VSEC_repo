@@ -1,10 +1,10 @@
 {
   "name": "assignment-no-08",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "mongo.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+    "start": "node mongo.js",
+    "dev": "node --watch mongo.js"
   },
   "dependencies": {
     "express": "^5.1.0",
