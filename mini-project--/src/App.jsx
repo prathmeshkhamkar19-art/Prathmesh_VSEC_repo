@@ -52,9 +52,9 @@ function App() {
         <>
           <h2>Hello, {name}!</h2>
           <BMI
-  name={name}       // Send the user's name to BMI component
-  mobile={mobile}   // Send the mobile number to BMI component
-  onResult={setResult} // Send the result back to App
+          name={name}       // Send the user's name to BMI component
+          mobile={mobile}   // Send the mobile number to BMI component
+           onResult={setResult} // Send the result back to App
 />
         </>
       ) : (

@@ -2,78 +2,66 @@
 import { useState } from 'react';
 import './bmi.css';
 
-function BMI({ name, mobile, onResult }) {
-  const [height, setHeight] = useState('');
+function BMI({ name, mobile, onResult })  {
+  const [height, setHeight] = useState('');      ///use to get the data and update
   const [weight, setWeight] = useState('');
 
-  async function calculate(e) {
-    e.preventDefault();
+  async function calculate(e) {       //async Function that work with await for api calling 
+    e.preventDefault();         //it use use to preventig the browser from page reloading
 
     const h = Number(height);
-    const w = Number(weight);
+    const w = Number(weight);   //converting html (string) value into js value(numbers)
 
-    if (h <= 0 || w <= 0) {
+    if (h <= 0 || w <= 0) {             //condtion
       alert('Enter valid height and weight');
       return;
     }
 
-    // Calculate BMI
-    const bmi = Number((w / ((h / 100) ** 2)).toFixed(2));
+    const bmi = Number((w / ((h / 100) ** 2)).toFixed(2));    ///formula for calcuating bmi
 
-    // Find BMI category
     let category = 'Obese';
+    if (bmi < 18.5) category = 'Underweight';
+    else if (bmi < 25) category = 'Normal weight';
+    else if (bmi < 30) category = 'Overweight';
 
-    if (bmi < 18.5) {
-      category = 'Underweight';
-    } else if (bmi < 25) {
-      category = 'Normal weight';
-    } else if (bmi < 30) {
-      category = 'Overweight';
-    }
+   const data = {
+  name: name,         // Name entered on login page
+  mobile: mobile,     // Mobile number entered on login page
+  height: h,          // Height in centimetres
+  weight: w,          // Weight in kilograms
+  bmi: bmi,            // Calculated BMI value
+  category: category   // BMI category
+};
 
-    // Prepare data
-    const data = {
-      name: name,
-      mobile: mobile,
-      height: h,
-      weight: w,
-      bmi: bmi,
-      category: category
-    };
-
-    try {
-      const response = await fetch('http://localhost:5000/api/bmi', {
-        method: 'POST',
+    try {   //API Calling 
+      const response = await fetch('http://localhost:5000/api/bmi', { //send request to my system(local host) /api/bmi is end point 
+        method: 'POST',     //post means send the data to backend (server)
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json'   //creating the blockto store data in json form
         },
         body: JSON.stringify(data)
       });
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || 'Could not save data');
+      if (!response.ok) {     //if response false = !response.ok show the error
+        throw new Error('Could not save data');
       }
 
-      // Send data to App.jsx
-      onResult(data);
-
+      const savedRecord = await response.json(); // Read response from backend
+      onResult(savedRecord.data); // Display the record returned by MongoDB API
+//                                                  //otherwise send this data to onResult fuction ofapp.jsx
     } catch (error) {
-      console.error('API Error:', error);
-      alert(error.message || 'Could not connect to backend');
+      alert('Could not save data. Check the backend and MongoDB.');
     }
   }
 
   return (
-    <div className="bmi-box">
+    <div className="bmi-box">   
       <h1>BMI Calculator</h1>
 
       <form onSubmit={calculate}>
         <label>Height (cm)</label>
         <input
           type="number"
-          min="1"
           value={height}
           onChange={(e) => setHeight(e.target.value)}
           placeholder="Enter height"
@@ -83,8 +71,6 @@ function BMI({ name, mobile, onResult }) {
         <label>Weight (kg)</label>
         <input
           type="number"
-          min="1"
-          step="any"
           value={weight}
           onChange={(e) => setWeight(e.target.value)}
           placeholder="Enter weight"
